@@ -31,6 +31,7 @@ int main()
       cout << "you guessed correctly!\n";
       }
       else
+          //
         {
         cout << "your guess is wrong, the correct number is "<< randomNumber<<"!\n";
         }
