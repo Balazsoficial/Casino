@@ -12,32 +12,53 @@ string GetTempFolder();
 int Getmoney();
 int main()
 {
-
+    while (true)
+    {
     if (filesystem::exists(GetTempFolder())) {
         ifstream storage(GetTempFolder());
     }
     else {
         ofstream storage(GetTempFolder());
+        storage << 1000;
     }
     srand(time(nullptr));
     int guess;
-    int money;
+    int bet;
+    int money =Getmoney();
     int randomNumber =0+(rand()%36);
     cout <<"You have "<<Getmoney() <<"$!\n";
     cout << "Enter a number of your choice: ";
     cin >> guess;
+    cout << "Make a bet: ";
+    cin >> bet;
+    while (bet>Getmoney()) {
+        cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
+        cout << "Make a bet: ";
+        cin >> bet;
+
+    }
     if(guess == randomNumber)
       {
-      cout << "you guessed correctly!\n";
+      cout << "You guessed correctly!\n";
+       money = money +bet*2;
+        bet =0;
+        filesystem::remove(filesystem::path(GetTempFolder()));
+        ofstream storage(GetTempFolder());
+        storage << money;
       }
       else
-          //
+
         {
         cout << "your guess is wrong, the correct number is "<< randomNumber<<"!\n";
+          bet =0;
+          filesystem::remove(filesystem::path(GetTempFolder()));
+          ofstream storage(GetTempFolder());
+          storage << money;
         }
 
 
-
+    cout << "press ctrl+c if you want to quit!\n";
+    }
     return 0;
 }
 string GetTempFolder() {
@@ -53,7 +74,7 @@ int Getmoney() {
     ifstream storage(GetTempFolder());
     while(getline(storage, money)) {
         if (money.empty()) {
-            money =1000;
+            exit(1);
         }
     int moneyint =stoi(money);
     return moneyint;
