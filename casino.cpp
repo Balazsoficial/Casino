@@ -10,7 +10,10 @@
 using namespace ::std;
 string GetTempFolder();
 int Getmoney();
+int Setmoney(int money);
+void HandleBeting(int bet,int randomNumber,int guess);
 int main()
+
 {
     while (true)
     {
@@ -31,29 +34,24 @@ int main()
     cin >> guess;
     cout << "Make a bet: ";
     cin >> bet;
+
     while (bet>Getmoney()) {
         cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
         cout << "Make a bet: ";
         cin >> bet;
 
+
     }
+        HandleBeting(bet,randomNumber,guess);
     if(guess == randomNumber)
       {
       cout << "You guessed correctly!\n";
-       money = money +bet*2;
-        bet =0;
-        filesystem::remove(filesystem::path(GetTempFolder()));
-        ofstream storage(GetTempFolder());
-        storage << money;
       }
       else
 
         {
         cout << "your guess is wrong, the correct number is "<< randomNumber<<"!\n";
-          bet =0;
-          filesystem::remove(filesystem::path(GetTempFolder()));
-          ofstream storage(GetTempFolder());
-          storage << money;
+
         }
 
 
@@ -72,11 +70,29 @@ string GetTempFolder() {
 int Getmoney() {
     string money;
     ifstream storage(GetTempFolder());
-    while(getline(storage, money)) {
+    while(getline(storage, money)){
+            int moneyint =stoi(money);
         if (money.empty()) {
-            exit(1);
+            moneyint = 1000;
         }
-    int moneyint =stoi(money);
+
     return moneyint;
     }
+}
+int Setmoney(int money) {
+    ofstream storage(GetTempFolder());
+    storage.clear();
+    storage <<money;
+    storage.close();
+    return 0;
+}
+
+void HandleBeting(int bet,int randomNumber,int guess) {
+    int money = Getmoney();
+    if (randomNumber!=guess) {
+        money = money-bet;
+        Setmoney(money);
+    }
+
+
 }
