@@ -7,15 +7,25 @@
 #include <fstream>
 #include <filesystem>
 #include <string>
+#include <windows.h>
 using namespace ::std;
 string GetTempFolder();
 int Getmoney();
 int Setmoney(int money);
 void HandleBeting(int bet,int randomNumber,int guess);
+void SetColor(int textColor, int backgroundColor);
 int main()
 {
     while (true)
     {
+        cout <<  " ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗"<<endl;
+        cout <<  "██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗"<<endl;
+        cout <<  "██║     ███████║███████╗██║██╔██╗ ██║██║   ██║"<<endl;
+        cout <<  "██║     ██╔══██║╚════██║██║██║╚██╗██║██║   ██║"<<endl;
+        cout <<  "╚██████╗██║  ██║███████║██║██║ ╚████║╚██████╔╝"<<endl;
+        cout <<  "╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ "<<endl;
+
+
     if (filesystem::exists(GetTempFolder())) {
         ifstream storage(GetTempFolder());
     }
@@ -92,4 +102,8 @@ void HandleBeting(int bet,int randomNumber,int guess) {
     }
 
 
+}
+void SetColor(int textColor, int backgroundColor) {
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(consoleHandle, textColor);
 }
