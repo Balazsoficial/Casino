@@ -13,7 +13,6 @@ int Getmoney();
 int Setmoney(int money);
 void HandleBeting(int bet,int randomNumber,int guess);
 int main()
-
 {
     while (true)
     {
@@ -29,36 +28,35 @@ int main()
     int bet;
     int money =Getmoney();
     int randomNumber =0+(rand()%36);
+
     cout <<"You have "<<Getmoney() <<"$!\n";
-    cout << "Enter a number of your choice: ";
+    cout << "Enter Your guess: ";
     cin >> guess;
+        while (guess>36 or guess<0) {
+            cout << "Enter Your guess (Between 0-36): ";
+            cin >> guess;
+        }
+
     cout << "Make a bet: ";
     cin >> bet;
-
     while (bet>Getmoney()) {
         cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
         cout << "Make a bet: ";
         cin >> bet;
-
-
     }
-        HandleBeting(bet,randomNumber,guess);
-    if(guess == randomNumber)
-      {
+    HandleBeting(bet,randomNumber,guess);
+
+    if(guess == randomNumber) {
       cout << "You guessed correctly!\n";
       }
-      else
-
-        {
+      else{
         cout << "your guess is wrong, the correct number is "<< randomNumber<<"!\n";
-
         }
-
-
-    cout << "press ctrl+c if you want to quit!\n";
+        cout << "press ctrl+c if you want to quit!\n";
     }
     return 0;
 }
+
 string GetTempFolder() {
     filesystem::path templocation = filesystem::temp_directory_path();
     string path_string =templocation.string();
@@ -86,7 +84,6 @@ int Setmoney(int money) {
     storage.close();
     return 0;
 }
-
 void HandleBeting(int bet,int randomNumber,int guess) {
     int money = Getmoney();
     if (randomNumber!=guess) {
