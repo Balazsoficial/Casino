@@ -12,8 +12,10 @@ using namespace ::std;
 string GetTempFolder();
 int Getmoney();
 int Setmoney(int money);
-void HandleBeting(int bet,int randomNumber,int guess);
+void HandleBetingNumbers(int bet,int randomNumber,int guess);
 void SetColor(int textColor, int backgroundColor);
+void IsEven (int Number);
+void HandleBettingEo(int bet,int randomNum,char guess);
 int main()
 {
     while (true)
@@ -37,8 +39,12 @@ int main()
     int guess;
     int bet;
     int money =Getmoney();
+    int type;
     int randomNumber =0+(rand()%36);
-
+        cout  << "What do you want to play\n1. Classic number select!\n 2. Even or odd!\Enter your choiche below: ";
+        cin >> type;
+    if (type == 1)
+        {
     cout <<"You have "<<Getmoney() <<"$!\n";
     cout << "Enter Your guess: ";
     cin >> guess;
@@ -54,7 +60,7 @@ int main()
         cout << "Make a bet: ";
         cin >> bet;
     }
-    HandleBeting(bet,randomNumber,guess);
+    HandleBetingNumbers(bet,randomNumber,guess);
 
     if(guess == randomNumber) {
       cout << "You guessed correctly!\n";
@@ -63,6 +69,35 @@ int main()
         cout << "your guess is wrong, the correct number is "<< randomNumber<<"!\n";
         }
         cout << "press ctrl+c if you want to quit!\n";
+
+    }
+    if (type == 2) {
+        char eochoiche;
+        cout <<"You have "<<Getmoney() <<"$!\n";
+        cout << "Enter Your guess even(e) or odd(o):";
+        cin >> eochoiche;
+        while (eochoiche!='e' && eochoiche!='o') {
+            cout << "Enter a valid character (e/o): ";
+            cin >> eochoiche;
+        }
+        cout << "Make a bet: ";
+        cin >> bet;
+        while (bet>Getmoney()) {
+            cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
+            cout << "Make a bet: ";
+            cin >> bet;
+        }
+        HandleBettingEo(bet,randomNumber,eochoiche);
+        if(randomNumber%2==0 && eochoiche=='e' ||randomNumber%2==1 && eochoiche=='o') {
+            cout << "You guessed correctly!\n";
+        }
+        else{
+            cout << "your guess is wrong, the correct number is "<< randomNumber<<"!\n";
+        }
+        cout << "press ctrl+c if you want to quit!\n";
+
+
+    }
     }
     return 0;
 }
@@ -94,11 +129,17 @@ int Setmoney(int money) {
     storage.close();
     return 0;
 }
-void HandleBeting(int bet,int randomNumber,int guess) {
+void HandleBetingNumbers(int bet,int randomNumber,int guess) {
     int money = Getmoney();
     if (randomNumber!=guess) {
         money = money-bet;
         Setmoney(money);
+    }
+    else {
+        money = money-bet;
+        money =money+(2*bet);
+        Setmoney(money);
+
     }
 
 
@@ -106,4 +147,25 @@ void HandleBeting(int bet,int randomNumber,int guess) {
 void SetColor(int textColor, int backgroundColor) {
     HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(consoleHandle, textColor);
+}
+void IsEven(int Number) {
+    if (Number % 2 == 0) {
+        true;
+    }
+    else {
+        false;
+    }
+}
+void HandleBettingEo(int bet,int randomNumber,char guess) {
+    int money = Getmoney();
+    if (randomNumber%2==0 && guess=='o' ||randomNumber%2==1 && guess=='e') {
+        money = money-bet;
+        Setmoney(money);
+    }
+    else {
+        money = money-bet;
+        money =money+(2*bet);
+        Setmoney(money);
+    }
+
 }
