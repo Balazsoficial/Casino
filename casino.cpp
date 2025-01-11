@@ -42,15 +42,15 @@ int main()
     int bet;
     int money =Getmoney();
     int type;
-    int randomNumber =0+(rand()%36);
-        cout  << "What do you want to play\n1. Classic number select!\n 2. Even or odd!\Enter your choiche below: ";
+    int randomNumber =1+(rand()%36);
+        cout  << "What do you want to play\n[+] 1. Select a number between 1 and 36!\n[+] 2. Even or odd! Enter your choiche below: ";
         cin >> type;
     if (type == 1)
         {
     cout <<"You have "<<Getmoney() <<"$!\n";
     cout << "Enter Your guess: ";
     cin >> guess;
-        while (guess>36 or guess<0) {
+        while (guess>36 or guess<1) {
             cout << "Enter Your guess (Between 0-36): ";
             cin >> guess;
         }
@@ -94,11 +94,11 @@ int main()
         HandleBettingEo(bet,randomNumber,eochoiche);
         if(randomNumber%2==0 && eochoiche=='e' ||randomNumber%2==1 && eochoiche=='o') {
             Victory();
-            cout << "You guessed correctly!"<<"!\n";
+            cout << "You guessed correctly, the number was: "<< randomNumber<<"!\n";
         }
         else{
             Loss();
-            cout << "Your guess was wrong "<<"!\n";
+            cout << "Your guess was wrong, the number was: "<< randomNumber<<"!\n";
         }
         cout << "press ctrl+c if you want to quit!\n";
         _sleep(1000);
@@ -187,10 +187,10 @@ void Victory() {
 
 }
 void Loss() {
-     cout <<" ██╗   ██╗ ██████╗ ██╗   ██╗    ██╗      ██████╗ ███████╗████████╗██╗"<<endl;
-     cout <<" ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║     ██╔═══██╗██╔════╝╚══██╔══╝██║"<<endl;
-     cout <<"  ╚████╔╝ ██║   ██║██║   ██║    ██║     ██║   ██║███████╗   ██║   ██║"<<endl;
-     cout <<"   ╚██╔╝  ██║   ██║██║   ██║    ██║     ██║   ██║╚════██║   ██║   ╚═╝"<<endl;
-     cout <<"    ██║   ╚██████╔╝╚██████╔╝    ███████╗╚██████╔╝███████║   ██║   ██╗"<<endl;
-     cout <<"    ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝"<<endl;
+     cout <<"██╗   ██╗ ██████╗ ██╗   ██╗    ██╗      ██████╗ ███████╗████████╗██╗"<<endl;
+     cout <<"╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║     ██╔═══██╗██╔════╝╚══██╔══╝██║"<<endl;
+     cout <<" ╚████╔╝ ██║   ██║██║   ██║    ██║     ██║   ██║███████╗   ██║   ██║"<<endl;
+     cout <<"  ╚██╔╝  ██║   ██║██║   ██║    ██║     ██║   ██║╚════██║   ██║   ╚═╝"<<endl;
+     cout <<"   ██║   ╚██████╔╝╚██████╔╝    ███████╗╚██████╔╝███████║   ██║   ██╗"<<endl;
+     cout <<"   ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝"<<endl;
 }
