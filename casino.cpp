@@ -16,6 +16,8 @@ void HandleBetingNumbers(int bet,int randomNumber,int guess);
 void SetColor(int textColor, int backgroundColor);
 void IsEven (int Number);
 void HandleBettingEo(int bet,int randomNum,char guess);
+void Victory();
+void Loss();
 int main()
 {
     while (true)
@@ -63,10 +65,12 @@ int main()
     HandleBetingNumbers(bet,randomNumber,guess);
 
     if(guess == randomNumber) {
-      cout << "You guessed correctly!\n";
+        Victory();
+        cout << "The correct number was "<< randomNumber<<"!\n";
       }
       else{
-        cout << "your guess is wrong, the correct number is "<< randomNumber<<"!\n";
+          Loss();
+          cout << "The correct number was "<< randomNumber<<"!\n";
         }
         cout << "press ctrl+c if you want to quit!\n";
 
@@ -89,12 +93,15 @@ int main()
         }
         HandleBettingEo(bet,randomNumber,eochoiche);
         if(randomNumber%2==0 && eochoiche=='e' ||randomNumber%2==1 && eochoiche=='o') {
-            cout << "You guessed correctly!\n";
+            Victory();
+            cout << "You guessed correctly!"<<"!\n";
         }
         else{
-            cout << "your guess is wrong, the correct number is "<< randomNumber<<"!\n";
+            Loss();
+            cout << "Your guess was wrong "<<"!\n";
         }
         cout << "press ctrl+c if you want to quit!\n";
+        _sleep(1000);
 
 
     }
@@ -168,4 +175,22 @@ void HandleBettingEo(int bet,int randomNumber,char guess) {
         Setmoney(money);
     }
 
+}
+void Victory() {
+    cout <<"██╗   ██╗ ██████╗ ██╗   ██╗    ██╗    ██╗ ██████╗ ███╗   ██╗██╗"<<endl;
+    cout <<"╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║    ██║██╔═══██╗████╗  ██║██║"<<endl;
+    cout <<" ╚████╔╝ ██║   ██║██║   ██║    ██║ █╗ ██║██║   ██║██╔██╗ ██║██║"<<endl;
+    cout <<"  ╚██╔╝  ██║   ██║██║   ██║    ██║███╗██║██║   ██║██║╚██╗██║╚═╝"<<endl;
+    cout <<"   ██║   ╚██████╔╝╚██████╔╝    ╚███╔███╔╝╚██████╔╝██║ ╚████║██╗"<<endl;
+    cout <<"   ╚═╝    ╚═════╝  ╚═════╝      ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝"<<endl;
+
+
+}
+void Loss() {
+     cout <<" ██╗   ██╗ ██████╗ ██╗   ██╗    ██╗      ██████╗ ███████╗████████╗██╗"<<endl;
+     cout <<" ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║     ██╔═══██╗██╔════╝╚══██╔══╝██║"<<endl;
+     cout <<"  ╚████╔╝ ██║   ██║██║   ██║    ██║     ██║   ██║███████╗   ██║   ██║"<<endl;
+     cout <<"   ╚██╔╝  ██║   ██║██║   ██║    ██║     ██║   ██║╚════██║   ██║   ╚═╝"<<endl;
+     cout <<"    ██║   ╚██████╔╝╚██████╔╝    ███████╗╚██████╔╝███████║   ██║   ██╗"<<endl;
+     cout <<"    ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝"<<endl;
 }
