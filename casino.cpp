@@ -107,6 +107,39 @@ int main()
 
 
     }
+        if (type == 3)
+            //work in progress
+        {
+            string strquess;
+            cout <<"You have "<<Getmoney() <<"$!\n";
+            cout << "Enter Your guess (Red or Black): ";
+            cin >> strquess;
+            while (strquess!="Red" && strquess!="Black") {
+                cout << "Enter Your guess (Red or Black): ";
+                cin >> strquess;
+            }
+
+            cout << "Make a bet: ";
+            cin >> bet;
+            while (bet>Getmoney()) {
+                cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
+                cout << "Make a bet: ";
+                cin >> bet;
+            }
+            HandleBettingNumbers(bet,randomNumber,guess);
+
+            if(guess == randomNumber) {
+                Victory();
+                cout << "The correct number was "<< randomNumber<<"!\n";
+            }
+            else{
+                Loss();
+                cout << "The correct number was "<< randomNumber<<"!\n";
+            }
+            cout << "press ctrl+c if you want to quit!\n";
+            _sleep(1000);
+
+        }
     }
     return 0;
 }
