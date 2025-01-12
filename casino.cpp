@@ -19,7 +19,9 @@ void HandleBettingEo(int bet,int randomNum,char guess);
 void Victory();
 void Loss();
 bool IsRed(int randomNum);
+void HandleBettingColors(int bet,int randomNum,string guess);
 int main()
+
 {
     while (true)
     {
@@ -126,9 +128,9 @@ int main()
                 cout << "Make a bet: ";
                 cin >> bet;
             }
-            HandleBettingNumbers(bet,randomNumber,guess);
+           HandleBettingColors(bet,randomNumber,strquess);
 
-            if(guess == randomNumber) {
+            if(IsRed(randomNumber) && strquess =="Red"||IsRed(randomNumber)==false && strquess =="Black") {
                 Victory();
                 cout << "The correct number was "<< randomNumber<<"!\n";
             }
@@ -269,5 +271,19 @@ bool IsRed(int randomNum) {
         case 36: return true;
 
     }
+}
+void HandleBettingColors(int bet,int randomNum,string guess) {
+    int money = Getmoney();
+    if (IsRed(randomNum) && guess =="Red"||IsRed(randomNum)==false && guess =="Black") {
+        money = money-bet;
+        Setmoney(money);
+    }
+    else {
+        money = money-bet;
+        money =money+(2*bet);
+        Setmoney(money);
+    }
+
+}
 }
 
