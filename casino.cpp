@@ -23,7 +23,7 @@ void GetColor(int RandomNum);
 int main()
 
 {
-
+    SetConsoleOutputCP(CP_UTF8);
     while (true) {
         cout <<  " ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗"<<endl;
         cout <<  "██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗"<<endl;
