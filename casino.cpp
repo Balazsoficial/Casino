@@ -5,7 +5,6 @@
 #include <random>
 #include <ctime>
 #include <fstream>
-#include <filesystem>
 #include <string>
 #include <windows.h>
 using namespace ::std;
@@ -24,6 +23,7 @@ void GetColor(int RandomNum);
 int main()
 
 {
+
     while (true) {
         cout <<  " ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗"<<endl;
         cout <<  "██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗"<<endl;
@@ -32,8 +32,12 @@ int main()
         cout <<  "╚██████╗██║  ██║███████║██║██║ ╚████║╚██████╔╝"<<endl;
         cout <<  "╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ "<<endl;
 
+        ifstream test;
+        test.open(GetTempFolder());
+        if (test.is_open()) {
 
-        if (filesystem::exists(GetTempFolder())) {
+
+
             ifstream storage(GetTempFolder());
         }
         else {
@@ -145,7 +149,8 @@ int main()
         }
         if (type == 4) {
             cout << "Reseting money file...\n";
-            filesystem::remove(GetTempFolder());
+          // filesystem::remove(GetTempFolder());
+            remove(GetTempFolder().c_str());
             _sleep(500);
             cout << "Successfully reset money file!\n";
         }
@@ -154,10 +159,14 @@ int main()
 }
 
 string GetTempFolder() {
-    filesystem::path templocation = filesystem::temp_directory_path();
-    string path_string =templocation.string();
+ //   filesystem::path templocation = filesystem::temp_directory_path();
+
+    string strTempPath;
+    char cPath[MAX_PATH];
+    if (GetTempPathA(MAX_PATH, cPath))
+        strTempPath =cPath;
     string data ="/data.txt";
-    string  temp = path_string + data;
+    string  temp = strTempPath + data;
     return temp;
 
 }
