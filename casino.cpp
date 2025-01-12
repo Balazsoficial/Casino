@@ -51,6 +51,7 @@ int main()
         cin >> type;
         if (type == 1)
         {
+
            // cout <<"You have "<<Getmoney() <<"$!\n";
             cout << "Enter Your guess: ";
             cin >> guess;
@@ -217,6 +218,7 @@ void HandleBettingEo(int bet,int randomNumber,char guess) {
         money =money+(2*bet);
         Setmoney(money);
     }
+
 
 }
 void Victory() {
