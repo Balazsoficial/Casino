@@ -46,7 +46,7 @@ int main()
     int money =Getmoney();
     int type;
     int randomNumber =1+(rand()%36);
-        cout  << "What do you want to play\n▶ 1. Select a number between 1 and 36!\n▶ 2. Even or odd!\nEnter your choice below: ";
+        cout  << "What do you want to play\n▶ 1. Select a number between 1 and 36!\n▶ 2. Even or odd!\n▶ 3. Black/Red!\nEnter your choice below: ";
         cin >> type;
     if (type == 1)
         {
@@ -285,5 +285,5 @@ void HandleBettingColors(int bet,int randomNum,string guess) {
     }
 
 }
-}
+
 
