@@ -20,11 +20,11 @@ void Victory();
 void Loss();
 bool IsRed(int randomNum);
 void HandleBettingColors(int bet,int randomNum,string guess);
+void GetColor(int RandomNum);
 int main()
 
 {
-    while (true)
-    {
+    while (true) {
         cout <<  " ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗"<<endl;
         cout <<  "██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗"<<endl;
         cout <<  "██║     ███████║███████╗██║██╔██╗ ██║██║   ██║"<<endl;
@@ -33,87 +33,87 @@ int main()
         cout <<  "╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ "<<endl;
 
 
-    if (filesystem::exists(GetTempFolder())) {
-        ifstream storage(GetTempFolder());
-    }
-    else {
-        ofstream storage(GetTempFolder());
-        storage << 1000;
-    }
-    srand(time(nullptr));
-    int guess;
-    int bet;
-    int money =Getmoney();
-    int type;
-    int randomNumber =1+(rand()%36);
+        if (filesystem::exists(GetTempFolder())) {
+            ifstream storage(GetTempFolder());
+        }
+        else {
+            ofstream storage(GetTempFolder());
+            storage << 1000;
+        }
+        srand(time(nullptr));
+        int guess;
+        int bet;
+        int money =Getmoney();
+        int type;
+        int randomNumber =1+(rand()%36);
+        cout << "Your balance is :" <<Getmoney()<<"$!\n" << endl;
         cout  << "What do you want to play\n▶ 1. Select a number between 1 and 36!\n▶ 2. Even or odd!\n▶ 3. Black/Red!\nEnter your choice below: ";
         cin >> type;
-    if (type == 1)
+        if (type == 1)
         {
-    cout <<"You have "<<Getmoney() <<"$!\n";
-    cout << "Enter Your guess: ";
-    cin >> guess;
-        while (guess>36 or guess<1) {
-            cout << "Enter Your guess (Between 0-36): ";
+           // cout <<"You have "<<Getmoney() <<"$!\n";
+            cout << "Enter Your guess: ";
             cin >> guess;
-        }
+            while (guess>36 or guess<1) {
+                cout << "Enter Your guess (Between 0-36): ";
+                cin >> guess;
+            }
 
-    cout << "Make a bet: ";
-    cin >> bet;
-    while (bet>Getmoney()) {
-        cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
-        cout << "Make a bet: ";
-        cin >> bet;
-    }
-    HandleBettingNumbers(bet,randomNumber,guess);
-
-    if(guess == randomNumber) {
-        Victory();
-        cout << "The correct number was "<< randomNumber<<"!\n";
-      }
-      else{
-          Loss();
-          cout << "The correct number was "<< randomNumber<<"!\n";
-        }
-        cout << "press ctrl+c if you want to quit!\n";
-        _sleep(1000);
-
-    }
-    if (type == 2) {
-        char eochoiche;
-        cout <<"You have "<<Getmoney() <<"$!\n";
-        cout << "Enter Your guess even(e) or odd(o):";
-        cin >> eochoiche;
-        while (eochoiche!='e' && eochoiche!='o') {
-            cout << "Enter a valid character (e/o): ";
-            cin >> eochoiche;
-        }
-        cout << "Make a bet: ";
-        cin >> bet;
-        while (bet>Getmoney()) {
-            cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
             cout << "Make a bet: ";
             cin >> bet;
+            while (bet>Getmoney()) {
+                cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
+                cout << "Make a bet: ";
+                cin >> bet;
+            }
+            HandleBettingNumbers(bet,randomNumber,guess);
+
+            if(guess == randomNumber) {
+                Victory();
+                cout << "The correct number was "<< randomNumber<<"!\n";
+            }
+            else{
+                Loss();
+                cout << "The correct number was "<< randomNumber<<"!\n";
+            }
+            cout << "press ctrl+c if you want to quit!\n";
+            _sleep(1000);
+
         }
-        HandleBettingEo(bet,randomNumber,eochoiche);
-        if(randomNumber%2==0 && std::tolower(eochoiche)=='e' ||randomNumber%2==1 && std::tolower(eochoiche)=='o') {
-            Victory();
-            cout << "You guessed correctly, the number was: "<< randomNumber<<"!\n";
-        }
-        else{
-            Loss();
-            cout << "Your guess was wrong, the number was: "<< randomNumber<<"!\n";
-        }
-        cout << "press ctrl+c if you want to quit!\n";
-        _sleep(1000);
+        if (type == 2) {
+            char eochoiche;
+      //      cout <<"You have "<<Getmoney() <<"$!\n";
+            cout << "Enter Your guess even(e) or odd(o):";
+            cin >> eochoiche;
+            while (eochoiche!='e' && eochoiche!='o') {
+                cout << "Enter a valid character (e/o): ";
+                cin >> eochoiche;
+            }
+            cout << "Make a bet: ";
+            cin >> bet;
+            while (bet>Getmoney()) {
+                cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
+                cout << "Make a bet: ";
+                cin >> bet;
+            }
+            HandleBettingEo(bet,randomNumber,eochoiche);
+            if(randomNumber%2==0 && std::tolower(eochoiche)=='e' ||randomNumber%2==1 && std::tolower(eochoiche)=='o') {
+                Victory();
+                cout << "You guessed correctly, the number was: "<< randomNumber<<"!\n";
+            }
+            else{
+                Loss();
+                cout << "Your guess was wrong, the number was: "<< randomNumber<<"!\n";
+            }
+            cout << "press ctrl+c if you want to quit!\n";
+            _sleep(1000);
 
 
-    }
+        }
         if (type == 3)
-            //work in progress
         {
             string strquess;
-            cout <<"You have "<<Getmoney() <<"$!\n";
+        //    cout <<"You have "<<Getmoney() <<"$!\n";
             cout << "Enter Your guess (Red or Black): ";
             cin >> strquess;
             while (strquess!="Red" && strquess!="Black") {
@@ -128,19 +128,25 @@ int main()
                 cout << "Make a bet: ";
                 cin >> bet;
             }
-           HandleBettingColors(bet,randomNumber,strquess);
+            HandleBettingColors(bet,randomNumber,strquess);
 
             if(IsRed(randomNumber) && strquess =="Red"||IsRed(randomNumber)==false && strquess =="Black") {
                 Victory();
-                cout << "The correct number was "<< randomNumber<<"!\n";
+                GetColor(randomNumber);
             }
             else{
                 Loss();
-                cout << "The correct number was "<< randomNumber<<"!\n";
+                GetColor(randomNumber);
             }
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
 
+        }
+        if (type == 4) {
+            cout << "Reseting money file...\n";
+            filesystem::remove(GetTempFolder());
+            _sleep(500);
+            cout << "Successfully reset money file!\n";
         }
     }
     return 0;
@@ -276,14 +282,24 @@ void HandleBettingColors(int bet,int randomNum,string guess) {
     int money = Getmoney();
     if (IsRed(randomNum) && guess =="Red"||IsRed(randomNum)==false && guess =="Black") {
         money = money-bet;
+        money =money+(2*bet);
         Setmoney(money);
+
     }
     else {
         money = money-bet;
-        money =money+(2*bet);
         Setmoney(money);
     }
 
 }
+void GetColor(int RandomNum) {
+    if (IsRed(RandomNum)==true) {
+        cout << "The correct color was red!";
+    }
+    else if (IsRed(RandomNum)==false) {
+        cout << "The correct color was black!";
+    }
+}
+
 
 
