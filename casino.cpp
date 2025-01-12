@@ -25,6 +25,7 @@ int main()
 {
     SetConsoleOutputCP(CP_UTF8);
     while (true) {
+        SetColor(2,15);
         cout <<  " ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗"<<endl;
         cout <<  "██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗"<<endl;
         cout <<  "██║     ███████║███████╗██║██╔██╗ ██║██║   ██║"<<endl;
@@ -35,7 +36,7 @@ int main()
         ifstream test;
         test.open(GetTempFolder());
         if (test.is_open()) {
-
+            test.close();
 
 
             ifstream storage(GetTempFolder());
@@ -51,9 +52,10 @@ int main()
         int type;
         int randomNumber =1+(rand()%36);
         cout << "Your balance is :" <<Getmoney()<<"$!\n" << endl;
-        cout  << "What do you want to play\n▶ 1. Select a number between 1 and 36!\n▶ 2. Even or odd!\n▶ 3. Black/Red!\nEnter your choice below: ";
+        cout  << "What do you want to play\n> 1. Select a number between 1 and 36!\n> 2. Even or odd!\n> 3. Black/Red!\nEnter your choice below: ";
         cin >> type;
         if (type == 1)
+
         {
 
            // cout <<"You have "<<Getmoney() <<"$!\n";
@@ -83,6 +85,7 @@ int main()
             }
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
+            system("cls");
 
         }
         if (type == 2) {
@@ -112,6 +115,7 @@ int main()
             }
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
+            system("cls");
 
 
         }
@@ -145,6 +149,7 @@ int main()
             }
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
+            system("cls");
 
         }
         if (type == 4) {
@@ -153,6 +158,7 @@ int main()
             remove(GetTempFolder().c_str());
             _sleep(500);
             cout << "Successfully reset money file!\n";
+            system("cls");
         }
     }
     return 0;
