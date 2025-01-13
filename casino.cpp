@@ -165,12 +165,13 @@ int main()
 }
 
 string GetTempFolder() {
- //   filesystem::path templocation = filesystem::temp_directory_path();
 
-    string strTempPath;
-    char cPath[MAX_PATH];
-    if (GetTempPathA(MAX_PATH, cPath))
-        strTempPath =cPath;
+        /* Old path finding
+            char cPath[MAX_PATH];
+            if (GetTempPathA(MAX_PATH, cPath))
+            strTempPath =cPath;*/
+
+    string  strTempPath = getenv("TEMP");
     string data ="/data.txt";
     string  temp = strTempPath + data;
     return temp;
