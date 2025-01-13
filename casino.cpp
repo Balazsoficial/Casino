@@ -171,11 +171,9 @@ string GetTempFolder() {
             if (GetTempPathA(MAX_PATH, cPath))
             strTempPath =cPath;*/
 
-    string  strTempPath = getenv("TEMP");
-    string data ="/data.txt";
-    string  temp = strTempPath + data;
-    return temp;
-
+    string  Tempdir = getenv("TEMP");
+    string  TempLoc = Tempdir + "/data.txt";
+    return TempLoc;
 }
 int Getmoney() {
     string money;
