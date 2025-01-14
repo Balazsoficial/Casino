@@ -19,7 +19,7 @@ void Victory();
 void Loss();
 bool IsRed(int randomNum);
 void HandleBettingColors(int bet,int randomNum,string guess);
-void GetColor(int RandomNum);
+void GetColor(int RandomNum,string strguess);
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     while (true) {
@@ -50,7 +50,7 @@ int main() {
         int type;
         int randomNumber =1+(rand()%37);
         cout << "Your balance is :" <<Getmoney()<<"$!\n" << endl;
-        cout  << "What do you want to play\n> 1. Select a number between 1 and 36!\n> 2. Even or odd!\n> 3. Black/Red!\n4. 0/00 \nEnter your choice below: ";
+        cout  << "What do you want to play\n> 1. Select a number between 1 and 36!\n> 2. Even or odd!\n> 3. Black/Red/Green!\n> 4. 0/00 \nEnter your choice below: ";
         cin >> type;
         if (type == 1)
 
@@ -136,16 +136,17 @@ int main() {
                 cin >> bet;
             }
             HandleBettingColors(bet,randomNumber,strquess);
-            if (randomNumber==0||randomNumber==37) {
-
+            if (randomNumber==0 && strquess=="Green"||randomNumber==37 && strquess=="Green") {
+                Victory();
+                GetColor(randomNumber,strquess);
             }
             if(IsRed(randomNumber) && strquess =="Red"||IsRed(randomNumber)==false && strquess =="Black") {
                 Victory();
-                GetColor(randomNumber);
+                GetColor(randomNumber,strquess);
             }
             else{
                 Loss();
-                GetColor(randomNumber);
+                GetColor(randomNumber, strquess);
             }
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
@@ -350,12 +351,15 @@ void HandleBettingColors(int bet,int randomNum,string guess) {
     }
 
 }
-void GetColor(int RandomNum) {
+void GetColor(int RandomNum,string strguess) {
     if (IsRed(RandomNum)==true) {
-        cout << "The correct color was red!";
+        cout << "The correct color was red!\n";
     }
     else if (IsRed(RandomNum)==false) {
-        cout << "The correct color was black!";
+        cout << "The correct color was black!\n";
+    }
+    else if (RandomNum==0 && strguess=="Green"||RandomNum==37 && strguess=="Green") {
+        cout << "The correct color was green!\n";
     }
 }
 
