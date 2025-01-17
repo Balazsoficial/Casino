@@ -26,3 +26,7 @@ who participated in this project.
 
 - **Balazsoficial** - Made the whole project
 
+## TODO
+ - Add betting for groups of twelwe
+ - optimize scripts
+ - split it into multiple classes
