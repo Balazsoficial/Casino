@@ -20,7 +20,7 @@ void Loss();
 bool IsRed(int randomNum);
 void HandleBettingColors(int bet,int randomNum,string guess);
 void GetColor(int RandomNum,string strguess);
-void CheckPartitionWin(string partitions, int Randomnum);
+void CheckPartitionWin(string partitions, int Randomnum, int money, int bet);
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     while (true) {
@@ -191,43 +191,6 @@ int main() {
                 Victory();
                 if (randomNumber == 37)
                 {
-                cout << "The correct number was "<< "00"<<"!\n";}
-            }
-            else{
-                Loss();
-                if (randomNumber == 37){
-                cout << "The correct number was "<< randomNumber<<"!\n";}
-            }
-            cout << "press ctrl+c if you want to quit!\n";
-            _sleep(1000);
-            system("cls");
-
-        }
-        if (type == 5)
-        {
-
-            string partitions;
-            cout << "Enter Your guess: ";
-            cin >> partitions;
-            while (partitions!="1st" && partitions!="2nd" && partitions!="3rd") {
-                cout << "Enter Your guess zero or double zero: ";
-                cin >> partitions;
-            }
-            CheckPartitionWin(partitions, randomNumber);
-
-            cout << "Make a bet: ";
-            cin >> bet;
-            while (bet>Getmoney()) {
-                cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
-                cout << "Make a bet: ";
-                cin >> bet;
-            }
-
-
-            if(guess == randomNumber) {
-                Victory();
-                if (randomNumber == 37)
-                {
                     cout << "The correct number was "<< "00"<<"!\n";}
             }
             else{
@@ -240,9 +203,38 @@ int main() {
             system("cls");
 
         }
-        return 0;
+        if (type == 5){
+
+            string partitions;
+            cout << "Enter Your guess: ";
+            cin >> partitions;
+            while (partitions!="1st" && partitions!="2nd" && partitions!="3rd") {
+                cout << "Enter Your guess 1st 2nd or 3d 12 division: ";
+                cin >> partitions;
+            }
+
+
+            cout << "Make a bet: ";
+            cin >> bet;
+            while (bet>Getmoney()) {
+                cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
+                cout << "Make a bet: ";
+                cin >> bet;
+            }
+
+
+            CheckPartitionWin(partitions, randomNumber, money,bet);
+
+            cout << "press ctrl+c if you want to quit!\n";
+            _sleep(1000);
+            system("cls");
+        }
+
     }
+    return 0;
 }
+
+
 
 string GetTempFolder() {
 
@@ -399,24 +391,36 @@ void GetColor(int RandomNum,string strguess) {
         cout << "The correct color was green!\n";
     }
 }
-void CheckPartitionWin(string partitions, int Randomnum) {
-    switch (partitions) {
-        if  ("1st" && Randomnum<=12) {
+void CheckPartitionWin(string partitions, int Randomnum, int money, int bet) {
+
+        if  (partitions=="1st" && Randomnum<=12) {
             Victory();
+            money = money-bet;
+            money =money+(2*bet);
+            Setmoney(money);
+            cout << Randomnum;
         }
-        else if ("2nd" && Randomnum<=24 && Randomnum>12) {
+        else if (partitions=="2nd" && Randomnum<=24 && Randomnum>12) {
             Victory();
+            money = money-bet;
+            money =money+(2*bet);
+            Setmoney(money);
         }
-        else if ("3rd" && Randomnum<=36 && Randomnum>24) {
+        else if (partitions=="3rd" && Randomnum<=36 && Randomnum>24) {
             Victory();
+            money = money-bet;
+            money =money+(2*bet);
+            Setmoney(money);
         }
         else {
             Loss();
+            money = money-bet;
+            Setmoney(money);
         }
 
 
     }
 
-}
+
 
 
