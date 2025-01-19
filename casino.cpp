@@ -20,16 +20,17 @@ void Loss();
 bool IsRed(int randomNum);
 void HandleBettingColors(int bet,int randomNum,string guess);
 void GetColor(int RandomNum,string strguess);
+void CheckPartitionWin(string partitions, int Randomnum);
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     while (true) {
         SetColor(2,15);
-      //  cout <<  " ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗"<<endl;
-        //cout <<  "██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗"<<endl;
-      //  cout <<  "██║     ███████║███████╗██║██╔██╗ ██║██║   ██║"<<endl;
-      //  cout <<  "██║     ██╔══██║╚════██║██║██║╚██╗██║██║   ██║"<<endl;
-      //  cout <<  "╚██████╗██║  ██║███████║██║██║ ╚████║╚██████╔╝"<<endl;
-      //  cout <<  "╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ "<<endl;
+        cout <<  " ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗"<<endl;
+        cout <<  "██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗"<<endl;
+        cout <<  "██║     ███████║███████╗██║██╔██╗ ██║██║   ██║"<<endl;
+        cout <<  "██║     ██╔══██║╚════██║██║██║╚██╗██║██║   ██║"<<endl;
+        cout <<  "╚██████╗██║  ██║███████║██║██║ ╚████║╚██████╔╝"<<endl;
+        cout <<  "╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ "<<endl;
 
         ifstream test;
         test.open(GetTempFolder());
@@ -53,7 +54,6 @@ int main() {
         cout  << "What do you want to play\n> 1. Select a number between 1 and 36!\n> 2. Even or odd!\n> 3. Black/Red/Green!\n> 4. 0/00 \nEnter your choice below: ";
         cin >> type;
         if (type == 1)
-
         {
 
             // cout <<"You have "<<Getmoney() <<"$!\n";
@@ -153,7 +153,7 @@ int main() {
             system("cls");
 
         }
-        if (type == 5) {
+        if (type == 6) {
             cout << "Reseting money file...\n";
             // filesystem::remove(GetTempFolder());
             remove(GetTempFolder().c_str());
@@ -197,6 +197,43 @@ int main() {
                 Loss();
                 if (randomNumber == 37){
                 cout << "The correct number was "<< randomNumber<<"!\n";}
+            }
+            cout << "press ctrl+c if you want to quit!\n";
+            _sleep(1000);
+            system("cls");
+
+        }
+        if (type == 5)
+        {
+
+            string partitions;
+            cout << "Enter Your guess: ";
+            cin >> partitions;
+            while (partitions!="1st" && partitions!="2nd" && partitions!="3rd") {
+                cout << "Enter Your guess zero or double zero: ";
+                cin >> partitions;
+            }
+            CheckPartitionWin(partitions, randomNumber);
+
+            cout << "Make a bet: ";
+            cin >> bet;
+            while (bet>Getmoney()) {
+                cout << "Your bet cant be bigger than your money which you have: "<<Getmoney<<"$!\n";
+                cout << "Make a bet: ";
+                cin >> bet;
+            }
+
+
+            if(guess == randomNumber) {
+                Victory();
+                if (randomNumber == 37)
+                {
+                    cout << "The correct number was "<< "00"<<"!\n";}
+            }
+            else{
+                Loss();
+                if (randomNumber == 37){
+                    cout << "The correct number was "<< randomNumber<<"!\n";}
             }
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
@@ -279,22 +316,22 @@ void HandleBettingEo(int bet,int randomNumber,char guess) {
 
 }
 void Victory() {
-   // cout <<"██╗   ██╗ ██████╗ ██╗   ██╗    ██╗    ██╗ ██████╗ ███╗   ██╗██╗"<<endl;
-   // cout <<"╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║    ██║██╔═══██╗████╗  ██║██║"<<endl;
- //   cout <<" ╚████╔╝ ██║   ██║██║   ██║    ██║ █╗ ██║██║   ██║██╔██╗ ██║██║"<<endl;
-  //  cout <<"  ╚██╔╝  ██║   ██║██║   ██║    ██║███╗██║██║   ██║██║╚██╗██║╚═╝"<<endl;
-  //  cout <<"   ██║   ╚██████╔╝╚██████╔╝    ╚███╔███╔╝╚██████╔╝██║ ╚████║██╗"<<endl;
- //   cout <<"   ╚═╝    ╚═════╝  ╚═════╝      ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝"<<endl;
+    cout <<"██╗   ██╗ ██████╗ ██╗   ██╗    ██╗    ██╗ ██████╗ ███╗   ██╗██╗"<<endl;
+    cout <<"╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║    ██║██╔═══██╗████╗  ██║██║"<<endl;
+    cout <<" ╚████╔╝ ██║   ██║██║   ██║    ██║ █╗ ██║██║   ██║██╔██╗ ██║██║"<<endl;
+    cout <<"  ╚██╔╝  ██║   ██║██║   ██║    ██║███╗██║██║   ██║██║╚██╗██║╚═╝"<<endl;
+    cout <<"   ██║   ╚██████╔╝╚██████╔╝    ╚███╔███╔╝╚██████╔╝██║ ╚████║██╗"<<endl;
+    cout <<"   ╚═╝    ╚═════╝  ╚═════╝      ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝"<<endl;
 
 
 }
 void Loss() {
-   //  cout <<"██╗   ██╗ ██████╗ ██╗   ██╗    ██╗      ██████╗ ███████╗████████╗██╗"<<endl;
-   //  cout <<"╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║     ██╔═══██╗██╔════╝╚══██╔══╝██║"<<endl;
-    // cout <<" ╚████╔╝ ██║   ██║██║   ██║    ██║     ██║   ██║███████╗   ██║   ██║"<<endl;
-   //  cout <<"  ╚██╔╝  ██║   ██║██║   ██║    ██║     ██║   ██║╚════██║   ██║   ╚═╝"<<endl;
-   //  cout <<"   ██║   ╚██████╔╝╚██████╔╝    ███████╗╚██████╔╝███████║   ██║   ██╗"<<endl;
-  //   cout <<"   ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝"<<endl;
+     cout <<"██╗   ██╗ ██████╗ ██╗   ██╗    ██╗      ██████╗ ███████╗████████╗██╗"<<endl;
+     cout <<"╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║     ██╔═══██╗██╔════╝╚══██╔══╝██║"<<endl;
+     cout <<" ╚████╔╝ ██║   ██║██║   ██║    ██║     ██║   ██║███████╗   ██║   ██║"<<endl;
+     cout <<"  ╚██╔╝  ██║   ██║██║   ██║    ██║     ██║   ██║╚════██║   ██║   ╚═╝"<<endl;
+     cout <<"   ██║   ╚██████╔╝╚██████╔╝    ███████╗╚██████╔╝███████║   ██║   ██╗"<<endl;
+     cout <<"   ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝"<<endl;
 }
 bool IsRed(int randomNum) {
     switch (randomNum) {
@@ -362,6 +399,24 @@ void GetColor(int RandomNum,string strguess) {
         cout << "The correct color was green!\n";
     }
 }
+void CheckPartitionWin(string partitions, int Randomnum) {
+    switch (partitions) {
+        if  ("1st" && Randomnum<=12) {
+            Victory();
+        }
+        else if ("2nd" && Randomnum<=24 && Randomnum>12) {
+            Victory();
+        }
+        else if ("3rd" && Randomnum<=36 && Randomnum>24) {
+            Victory();
+        }
+        else {
+            Loss();
+        }
 
+
+    }
+
+}
 
 
