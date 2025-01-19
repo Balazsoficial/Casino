@@ -1,7 +1,32 @@
-A basic roulette game written in c++ console, it has some basic and easily codeable functions
-like black/red even/odd and pick a specific number.
-Rn the project was in one file but i am sure that it will change in the future since 
-its site is getting out of hand alredy.
-There is a currency system designed to last if you restart the game and also future products might use this file!
-This project if just for my entertainment and practice, help me out if you want to!
-This project is entirely developed by @Balazsoficial
+
+# C++ Casino project
+
+I had too much free time so i decided to create this project!
+
+## Getting fresh exe
+
+You can download the main source files and recompile them to be able to run them
+### Prerequisites
+
+- Have a computer
+
+## Built With
+- [Mingw](https://www.mingw-w64.org)
+- [Cmake](https://cmake.org)
+
+
+## Contributing
+
+You can contribute to it if you like to just create a new branch and merge request!
+## Authors
+
+See also the list of
+[contributors](https://github.com/Balazsoficial/Casino/graphs/contributors)
+who participated in this project.
+
+- **Balazsoficial** - Made the whole project
+
+## TODO
+ - Add betting for groups of twelwe
+ - optimize scripts
+ - split it into multiple classes
