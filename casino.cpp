@@ -9,7 +9,7 @@
 #include <windows.h>
 #include <D:\Dokumentumok\Nuclear Launch Codes\cpp-console\casino\casino.h>
 using namespace ::std;
-string GetTempFolder();
+
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
@@ -41,7 +41,7 @@ int main() {
         int type;
         int randomNumber =1+(rand()%37);
         cout << "Your balance is :" <<Getmoney()<<"$!\n" << endl;
-        cout  << "What do you want to play\n> 1. Select a number between 1 and 36!\n> 2. Even or odd!\n> 3. Black/Red/Green!\n> 4. 0/00 \nEnter your choice below: ";
+        cout  << "What do you want to play\n> 1. Select a number between 1 and 36!\n> 2. Even or odd!\n> 3. Black/Red/Green!\n> 4. 0/00\n> 5. 1st,2nd or 3d dozen! \nEnter your choice below: ";
         cin >> type;
         if (type == 1)
         {
