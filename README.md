@@ -2,7 +2,7 @@
 # C++ Casino project
 
 I had too much free time so i decided to create this project!
-
+ 
 ## Getting fresh exe
 
 You can download the main source files and recompile them to be able to run them
