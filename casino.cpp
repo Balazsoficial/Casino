@@ -26,8 +26,6 @@ int main() {
         test.open(GetTempFolder());
         if (test.is_open()) {
             test.close();
-
-
             ifstream storage(GetTempFolder());
         }
         else {
