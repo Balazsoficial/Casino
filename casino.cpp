@@ -50,7 +50,7 @@ int main() {
             // cout <<"You have "<<Getmoney() <<"$!\n";
             _sleep(100);
             cout << "Enter Your guess: ";
-            cin.clear();
+            FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
             cin >> guess;
             while (guess>36 or guess<1) {
                 cout << "Enter Your guess (Between 1-36): ";
@@ -90,6 +90,7 @@ int main() {
         if (GetAsyncKeyState(0x32)& 0x8000) {
             char eochoiche;
             _sleep(100);
+            FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
             //      cout <<"You have "<<Getmoney() <<"$!\n";
             cout << "Enter Your guess even(e) or odd(o):";
             cin >> eochoiche;
@@ -128,6 +129,7 @@ int main() {
         {
             string strquess;
             _sleep(100);
+            FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
             //    cout <<"You have "<<Getmoney() <<"$!\n";
             cout << "Enter Your guess (Red or Black or Green): ";
             cin >> strquess;
@@ -176,6 +178,7 @@ int main() {
 
             string zeros;
             _sleep(100);
+            FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
             cout << "Enter Your guess: ";
             cin >> zeros;
             while (zeros!="0" && zeros!="00") {
@@ -219,6 +222,7 @@ int main() {
 
             string partitions;
             _sleep(100);
+            FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
             cout << "Enter Your guess: ";
             cin >> partitions;
             while (partitions!="1st" && partitions!="2nd" && partitions!="3rd") {
