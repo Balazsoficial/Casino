@@ -41,14 +41,16 @@ int main() {
         int type;
         int randomNumber =1+(rand()%37);
         cout << "Your balance is :" <<Getmoney()<<"$!\n" << endl;
-        cout  << "What do you want to play\n> 1. Select a number between 1 and 36!\n> 2. Even or odd(e/o)!\n> 3. Black/Red/Green!\n> 4. 0/00\n> 5. 1st,2nd or 3d dozen! \nEnter your choice below: ";
+        cout  << "Press the number of your choice\n> 1. Select a number between 1 and 36!\n> 2. Even or odd(e/o)!\n> 3. Black/Red/Green!\n> 4. 0/00\n> 5. 1st,2nd or 3d dozen!\n";
        // cin >> type;
         while (end!=1) {
-        if (GetAsyncKeyState(0x69))
+        if (GetAsyncKeyState(0x31)& 0x8000)
         {
 
             // cout <<"You have "<<Getmoney() <<"$!\n";
+            _sleep(100);
             cout << "Enter Your guess: ";
+            cin.clear();
             cin >> guess;
             while (guess>36 or guess<1) {
                 cout << "Enter Your guess (Between 1-36): ";
@@ -66,11 +68,18 @@ int main() {
 
             if(guess == randomNumber) {
                 Victory();
-                cout << "The correct number was "<< randomNumber<<"!\n";
+                if (randomNumber == 37) {
+                    cout << "The correct number was "<< "00"<<"!\n";
+                }
+                else{ cout << "The correct number was "<< randomNumber<<"!\n";}
+
             }
             else{
                 Loss();
-                cout << "The correct number was "<< randomNumber<<"!\n";
+                if (randomNumber == 37)
+                {
+                    cout << "The correct number was "<< "00"<<"!\n";}
+                else{ cout << "The correct number was "<< randomNumber<<"!\n";}
             }
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
@@ -78,8 +87,9 @@ int main() {
                         end =1;
 
         }
-        if (type == 2) {
+        if (GetAsyncKeyState(0x32)& 0x8000) {
             char eochoiche;
+            _sleep(100);
             //      cout <<"You have "<<Getmoney() <<"$!\n";
             cout << "Enter Your guess even(e) or odd(o):";
             cin >> eochoiche;
@@ -97,7 +107,11 @@ int main() {
             HandleBettingEo(bet,randomNumber,eochoiche);
             if(randomNumber%2==0 && std::tolower(eochoiche)=='e' ||randomNumber%2==1 && std::tolower(eochoiche)=='o') {
                 Victory();
-                cout << "You guessed correctly, the number was: "<< randomNumber<<"!\n";
+                if (randomNumber == 37) {
+                    cout << "The correct number was "<< "00"<<"!\n";
+                }
+                else{ cout << "The correct number was "<< randomNumber<<"!\n";}
+
             }
             else{
                 Loss();
@@ -110,9 +124,10 @@ int main() {
 
 
         }
-        if (type == 3)
+        if (GetAsyncKeyState(0x33)& 0x8000)
         {
             string strquess;
+            _sleep(100);
             //    cout <<"You have "<<Getmoney() <<"$!\n";
             cout << "Enter Your guess (Red or Black or Green): ";
             cin >> strquess;
@@ -147,18 +162,20 @@ int main() {
             end =1;
 
         }
-        if (type == 6) {
+        if (GetAsyncKeyState(VK_F5)& 0x8000) {
             cout << "Reseting money file...\n";
             // filesystem::remove(GetTempFolder());
             remove(GetTempFolder().c_str());
             _sleep(500);
             cout << "Successfully reset money file!\n";
             system("cls");
+            end=1;
         }
-        if (type == 4)
+        if (GetAsyncKeyState(0x34)& 0x8000)
         {
 
             string zeros;
+            _sleep(100);
             cout << "Enter Your guess: ";
             cin >> zeros;
             while (zeros!="0" && zeros!="00") {
@@ -198,9 +215,10 @@ int main() {
             end =1;
 
         }
-        if (type == 5){
+        if (GetAsyncKeyState(0x35) & 0x8000){
 
             string partitions;
+            _sleep(100);
             cout << "Enter Your guess: ";
             cin >> partitions;
             while (partitions!="1st" && partitions!="2nd" && partitions!="3rd") {
