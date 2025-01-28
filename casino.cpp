@@ -13,7 +13,9 @@ using namespace ::std;
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
+    int end;
     while (true) {
+        end =0;
         SetColor(2,15);
         cout <<  " ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗"<<endl;
         cout <<  "██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗"<<endl;
@@ -40,8 +42,9 @@ int main() {
         int randomNumber =1+(rand()%37);
         cout << "Your balance is :" <<Getmoney()<<"$!\n" << endl;
         cout  << "What do you want to play\n> 1. Select a number between 1 and 36!\n> 2. Even or odd(e/o)!\n> 3. Black/Red/Green!\n> 4. 0/00\n> 5. 1st,2nd or 3d dozen! \nEnter your choice below: ";
-        cin >> type;
-        if (type == 1)
+       // cin >> type;
+        while (end!=1) {
+        if (GetAsyncKeyState(0x69))
         {
 
             // cout <<"You have "<<Getmoney() <<"$!\n";
@@ -72,6 +75,7 @@ int main() {
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
             system("cls");
+                        end =1;
 
         }
         if (type == 2) {
@@ -102,6 +106,7 @@ int main() {
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
             system("cls");
+            end =1;
 
 
         }
@@ -139,6 +144,7 @@ int main() {
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
             system("cls");
+            end =1;
 
         }
         if (type == 6) {
@@ -189,6 +195,7 @@ int main() {
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
             system("cls");
+            end =1;
 
         }
         if (type == 5){
@@ -215,8 +222,12 @@ int main() {
 
             cout << "press ctrl+c if you want to quit!\n";
             _sleep(1000);
+
             system("cls");
+            end =1;
         }
+        }
+
 
     }
   //  return 0;
