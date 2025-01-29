@@ -41,7 +41,7 @@ int main() {
         int type;
         int randomNumber =1+(rand()%37);
         cout << "Your balance is :" <<Getmoney()<<"$!\n" << endl;
-        cout  << "Press the number of your choice\n> 1. Select a number between 1 and 36!\n> 2. Even or odd(e/o)!\n> 3. Black/Red/Green!\n> 4. 0/00\n> 5. 1st,2nd or 3d dozen!\n";
+        cout  << "Press the number of your choice\n> [1] Select a number between 1 and 36!\n> [2] Even or odd(e/o)!\n> [3] Black/Red/Green!\n> [4] 0/00\n> [5] 1st,2nd or 3d dozen!\n";
        // cin >> type;
         while (end!=1) {
         if (GetAsyncKeyState(0x31)& 0x8000)
@@ -52,7 +52,7 @@ int main() {
             cout << "Enter Your guess: ";
             FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
             cin >> guess;
-            while (guess>36 or guess<1) {
+            while (guess>36 || guess<1) {
                 cout << "Enter Your guess (Between 1-36): ";
                 cin >> guess;
             }
