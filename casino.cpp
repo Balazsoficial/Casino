@@ -72,7 +72,6 @@ int main() {
                     cout << "The correct number was "<< "00"<<"!\n";
                 }
                 else{ cout << "The correct number was "<< randomNumber<<"!\n";}
-
             }
             else{
                 Loss();
